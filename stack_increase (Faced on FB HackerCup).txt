@@ -1,0 +1,36 @@
+#Step-1:
+ -Add this header File
+   #include <sys/resource.h>
+   
+   
+#Step 2:
+  -paste this function before main function and call from the beginning from the of main function
+  
+  
+  //Function For Linux
+  void stack_increase(){
+    struct rlimit rl;
+    const rlim_t kStackSize = 512L * 1024L * 1024L;
+    assert(!getrlimit(RLIMIT_STACK, &rl));
+    rl.rlim_cur = kStackSize;
+    assert(!setrlimit(RLIMIT_STACK, &rl));
+  }
+  
+  
+  //Function For windows
+  void stack_inc(){
+    const rlim_t kStackSize = 60 * 1024 * 1024;
+    struct rlimit rl;
+    int result;
+
+    result = getrlimit(RLIMIT_STACK, &rl);
+    if (result == 0) {
+      if (rl.rlim_cur < kStackSize) {
+        rl.rlim_cur = kStackSize;
+        result = setrlimit(RLIMIT_STACK, &rl);
+        if (result != 0) {
+          fprintf(stderr, "setrlimit returned result = %d\n", result);
+        }
+      }
+    }
+  }
