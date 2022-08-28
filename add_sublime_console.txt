@@ -1,0 +1,11 @@
+Step-1:
+   Add new build system like  "file_name.sublime-build"
+   content:
+    {
+      "cmd": ["g++.exe", "-std=c++11", "-o", "$file_base_name", "$file", "&&", "start", "cmd", "/c", "$file_base_name & echo. & echo. & pause"],
+      "shell": true,
+      "selector": "source.c++"
+   }
+   
+Step-2:
+  Select the new build system you created.
