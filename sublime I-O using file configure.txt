@@ -1,0 +1,14 @@
+Step-1: 
+Create a new build system using below code named "file_name.sublime-build".
+
+{
+"cmd": ["g++.exe","-std=c++14", "${file}", "-o", "${file_base_name}.exe", "&&" , "${file_base_name}.exe<inputf.in>outputf.in"],
+"selector":"source.cpp",
+"shell":true,
+"working_dir":"$file_path"
+}
+& select that build system.
+
+Step-2:
+Then just create 2 file inputf.in && outputf.in for taking input/output.
+NB: no need to call freopen file input are automated in sublime text.
